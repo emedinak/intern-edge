@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InternEdge — AI Internship Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="images/logo.png" class="logo-icon" alt="InternEdge" />
+        <div>
+          <p class="logo-title">InternEdge</p>
+          <p class="logo-sub">AI Application Coach</p>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Upload your CV</p>
+        <label class="upload-btn" id="cv-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span id="cv-label-text">Choose PDF</span>
+          <input type="file" id="cv-upload" accept=".pdf" hidden />
+        </label>
+        <div class="upload-status" id="cv-status"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Job Description</p>
+        <textarea
+          id="jd-text"
+          placeholder="Paste the job description here..."
+          oninput="jobText = this.value"
+          rows="6"
+        ></textarea>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Quick actions</p>
+        <button class="quick-btn" onclick="quickSend('Tailor my CV to the job description I uploaded')">Tailor my CV</button>
+        <button class="quick-btn" onclick="quickSend('Write a cover letter for the job description I uploaded, using my CV as context')">Write cover letter</button>
+        <button class="quick-btn" onclick="quickSend('Give me detailed feedback on my CV')">Review my CV</button>
+        <button class="quick-btn" onclick="quickSend('What interview questions should I prepare for this role?')">Interview prep</button>
+        <button class="quick-btn" onclick="quickSend('Write a LinkedIn message to a recruiter at this company')">Recruiter outreach</button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="status-dot"></div>
+        <span>Claude Sonnet connected</span>
+      </div>
+    </aside>
+
+    <!-- ── Main chat ── -->
+    <main class="chat-area">
+      <div class="messages" id="messages">
+        <div class="msg assistant">
+          <div class="msg-avatar">IE</div>
+          <div class="msg-bubble">
+            <p>Hi! I'm InternEdge, your AI internship coach.</p>
+            <p>Upload your <strong>CV</strong> and a <strong>job description</strong> on the left, then ask me to tailor your CV, write a cover letter, or prep you for the interview. You can also just chat without uploading anything.</p>
+            <p>What would you like to work on?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <div class="input-wrap">
+          <textarea
+            id="input"
+            placeholder="Ask anything about your internship search..."
+            rows="1"
+            onkeydown="handleKey(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+          <button class="send-btn" id="sendBtn" onclick="sendMessage()" aria-label="Send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <p class="input-hint">Enter to send · Shift+Enter for new line</p>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
