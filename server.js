@@ -11,7 +11,6 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
 
 // ── System prompt with reference documents ──────────────────────────────────
 const BASE_SYSTEM_PROMPT = `You are InternEdge, a specialized AI assistant for university students searching for internships. You are an expert in:
